@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :feed="feed" />
+  <Container :feed="feed" :tabIdx="tabIdx" />
   <button @click="more">더보기</button>
 
   <div class="footer">
@@ -19,14 +19,17 @@
     </ul>
  </div>
 
+ <button @click="tabIdx = 0">버튼0</button>
+ <button @click="tabIdx = 1">버튼1</button>
+ <button @click="tabIdx = 2">버튼1</button>
 
- <div v-if="tabIdx == 0">내용0</div>
+ <!-- <div v-if="tabIdx == 0">내용0</div>
  <div v-if="tabIdx == 1">내용1</div>
  <div v-if="tabIdx == 2">내용2</div>
 
  <button @click="tabIdx = 0">버튼0</button>
  <button @click="tabIdx = 1">버튼1</button>
- <button @click="tabIdx = 2">버튼2</button>
+ <button @click="tabIdx = 2">버튼2</button> -->
 </template>
 
 <script>
