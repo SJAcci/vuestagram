@@ -10,6 +10,7 @@
   </div>
 
   <Container :feed="feed" />
+  <button @click="more">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -17,11 +18,22 @@
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
+
+
+ <div v-if="tabIdx == 0">내용0</div>
+ <div v-if="tabIdx == 1">내용1</div>
+ <div v-if="tabIdx == 2">내용2</div>
+
+ <button @click="tabIdx = 0">버튼0</button>
+ <button @click="tabIdx = 1">버튼1</button>
+ <button @click="tabIdx = 2">버튼2</button>
 </template>
 
 <script>
 import Container from './components/Container.vue';
 import feed from './assets/feed.js';
+import axios from 'axios';
+axios.post()
 
 export default {
   //eslint-disable-next-line
@@ -29,10 +41,27 @@ export default {
   data(){
     return{
       feed: feed,
+      idx: -1,
+      tabIdx: 0,
     }
   },
   components: {
     Container,
+  },
+  methods:{
+    more(){
+
+      axios.get(`https://codingapple1.github.io/vue/more${this.idx+=1}.json`)
+      .then((obj)=>{
+        //요청 성공시 실행할 코드 작성
+        console.log(obj.data)
+        this.feed.push(obj.data)
+      })
+      .catch((err)=>{
+        //요청 실패시 실행할 코드 작성
+        console.log(err)
+      })
+    }
   }
 }
 </script>
