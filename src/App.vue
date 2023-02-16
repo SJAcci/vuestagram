@@ -9,34 +9,27 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :feed="feed" :tabIdx="tabIdx" />
+  <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" />
   <button @click="more">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input type="file" id="file" class="inputfile" @change="upload"/>
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
 
  <button @click="tabIdx = 0">버튼0</button>
  <button @click="tabIdx = 1">버튼1</button>
- <button @click="tabIdx = 2">버튼1</button>
+ <button @click="tabIdx = 2">버튼2</button>
 
- <!-- <div v-if="tabIdx == 0">내용0</div>
- <div v-if="tabIdx == 1">내용1</div>
- <div v-if="tabIdx == 2">내용2</div>
-
- <button @click="tabIdx = 0">버튼0</button>
- <button @click="tabIdx = 1">버튼1</button>
- <button @click="tabIdx = 2">버튼2</button> -->
 </template>
 
 <script>
 import Container from './components/Container.vue';
 import feed from './assets/feed.js';
 import axios from 'axios';
-axios.post()
+// axios.post()
 
 export default {
   //eslint-disable-next-line
@@ -46,6 +39,7 @@ export default {
       feed: feed,
       idx: -1,
       tabIdx: 0,
+      imgURL : '',
     }
   },
   components: {
@@ -53,9 +47,8 @@ export default {
   },
   methods:{
     more(){
-
       axios.get(`https://codingapple1.github.io/vue/more${this.idx+=1}.json`)
-      .then((obj)=>{
+      .then(obj=>{
         //요청 성공시 실행할 코드 작성
         console.log(obj.data)
         this.feed.push(obj.data)
@@ -64,6 +57,18 @@ export default {
         //요청 실패시 실행할 코드 작성
         console.log(err)
       })
+    },
+    upload(e){
+      let uplodedFile = e.target.files;
+      console.log(uplodedFile[0])
+
+      this.imgURL = URL.createObjectURL(uplodedFile[0])
+
+      console.log(  this.imgURL)
+
+      // console.log(url)
+      this.tabIdx++;
+
     }
   }
 }
