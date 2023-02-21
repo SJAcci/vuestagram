@@ -4,12 +4,14 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li @click="tabIdx++" v-if="tabIdx == 1">Next</li>
+      <li @click="publish" v-if="tabIdx == 2">Publish</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" />
+  <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" @write="myFee
+   = $event"/>
   <button @click="more">더보기</button>
 
   <div class="footer">
@@ -40,6 +42,7 @@ export default {
       idx: -1,
       tabIdx: 0,
       imgURL : '',
+      myFeedContent: ''
     }
   },
   components: {
@@ -59,16 +62,33 @@ export default {
       })
     },
     upload(e){
-      let uplodedFile = e.target.files;
-      console.log(uplodedFile[0])
+      let uplodedFile = e.target;
 
-      this.imgURL = URL.createObjectURL(uplodedFile[0])
+      if(uplodedFile.files[0]){
+        this.imgURL = window.URL.createObjectURL(uplodedFile.files[0]);
 
-      console.log(  this.imgURL)
+        console.log(this.imgURL)
 
-      // console.log(url)
-      this.tabIdx++;
+        this.tabIdx++;
+      }
 
+
+
+    },
+    publish(){
+      var myFeed = {
+        name: "thisMan",
+        userImage: "https://placeimg.com/200/200/people",
+        postImage: this.imgUrl,
+        likes: 20,
+        date: "Apr 20",
+        liked: false,
+        content: this.myFeedContent,
+        filter: "clarendon"
+      }
+      this.feed.unshift(myFeed)
+
+      this.tabIdx = 0;
     }
   }
 }
