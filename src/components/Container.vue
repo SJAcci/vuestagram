@@ -6,37 +6,41 @@
   
         <!-- 필터선택페이지 -->
         <div v-if="tabIdx == 1">
-            <div class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
+            <div class="upload-image" :style="`background-image: url(${imgURL})`"></div>
             <div class="filters">
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
+                <FilterBox :imgURL="imgURL" :filters="filter" v-for="filter in filters" :key="filter"></FilterBox>
             </div>
         </div>
 
         <!-- 글작성페이지 -->
         <div v-if="tabIdx == 2">
-            <div class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
+            <div class="upload-image" :style="`background-image: url(${imgURL})`"></div>
             <div class="write">
-                <textarea class="write-box" placeholder="write!" @input="this.$emit('write', $event.target.value)"></textarea>
+                <textarea class="write-box" placeholder="write!" @input="$emit('write', $event.target.value)"></textarea>
             </div>
         </div>
     </div>
 </template>
 <script>
 import Post from './Post.vue';
+import FilterBox from './FilterBox.vue'
+
 export default {
     // eslint-disable-next-line
     name: 'Container',
-    props: {
-        feed: Array,
-        tabIdx: Number,
-        imgUrl: String,
+    data(){
+        return{
+            filters : [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
+        }
     },
     components: {
         Post,
+        FilterBox
+    },
+    props: {
+        feed: Array,
+        tabIdx: Number,
+        imgURL: String,
     },
     methods: {
 

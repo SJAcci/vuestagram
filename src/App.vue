@@ -79,7 +79,7 @@ export default {
       var myFeed = {
         name: "thisMan",
         userImage: "https://placeimg.com/200/200/people",
-        postImage: this.imgUrl,
+        postImage: this.imgURL,
         likes: 20,
         date: "Apr 20",
         liked: false,
