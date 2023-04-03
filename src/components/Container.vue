@@ -8,7 +8,9 @@
         <div v-if="tabIdx == 1">
             <div class="upload-image" :style="`background-image: url(${imgURL})`"></div>
             <div class="filters">
-                <FilterBox :imgURL="imgURL" :filters="filter" v-for="filter in filters" :key="filter"></FilterBox>
+                <FilterBox :imgURL="imgURL" :filter="filter" v-for="filter in filters" :key="filter">
+                    {{filter}} <!-- slot 사용하는 방법 -->
+                </FilterBox>
             </div>
         </div>
 
