@@ -4,7 +4,7 @@
           <div class="profile" :style="{ backgroundImage: `url(${feed.userImage})`}"></div>
           <span class="profile-name">{{ feed.name }}</span>
         </div>
-        <div class="post-body" :style="{ backgroundImage: `url(${feed.postImage})`}"></div>
+        <div :class="feed.filter" class="post-body" :style="{ backgroundImage: `url(${feed.postImage})`}"></div>
         <div class="post-content">
           <p>{{ feed.likes }} Likes</p>
           <p><strong>{{ feed.name }}</strong> {{ feed.content }}</p>

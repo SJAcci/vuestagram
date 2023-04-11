@@ -10,7 +10,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" @write="myFee
+  <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" :myFilter="myFilter" @write="myFee
    = $event"/>
   <button @click="more">더보기</button>
 
@@ -42,8 +42,17 @@ export default {
       idx: -1,
       tabIdx: 0,
       imgURL : '',
-      myFeedContent: ''
+      myFeedContent: '',
+      myFilter : ''
     }
+  },
+  mounted(){
+    this.emitter.on('작명', (a)=>{
+ 
+      this.myFilter = a
+
+      console.log(this.myFilter)
+    });
   },
   components: {
     Container,

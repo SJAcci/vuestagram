@@ -1,5 +1,5 @@
 <template>
-    <div :class="filter + ' filter-item'" :style="`background-image:url(${imgURL})`">
+    <div :class="filter + ' filter-item'" :style="`background-image:url(${imgURL})`" @click="fire">
         <!-- {{ filter }} -->
         <slot></slot>
     </div> 
@@ -8,6 +8,11 @@
     export default{
         //eslint-disable-next-line
         name: 'FilterBox',
+        methods: {
+            fire(){
+                this.emitter.emit('작명', this.filter)
+            }
+        },
         props: {
             imgURL: String,
             filter: String,

@@ -6,7 +6,7 @@
   
         <!-- 필터선택페이지 -->
         <div v-if="tabIdx == 1">
-            <div class="upload-image" :style="`background-image: url(${imgURL})`"></div>
+            <div :class="myFilter + ' upload-image'" :style="`background-image: url(${imgURL})`"></div>
             <div class="filters">
                 <FilterBox :imgURL="imgURL" :filter="filter" v-for="filter in filters" :key="filter">
                     {{filter}} <!-- slot 사용하는 방법 -->
@@ -43,6 +43,7 @@ export default {
         feed: Array,
         tabIdx: Number,
         imgURL: String,
+        myFilter : String,
     },
     methods: {
 
