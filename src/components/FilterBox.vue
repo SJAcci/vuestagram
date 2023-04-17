@@ -10,7 +10,7 @@
         name: 'FilterBox',
         methods: {
             fire(){
-                this.emitter.emit('작명', this.filter)
+                this.emitter.emit('filterClick', this.filter)
             }
         },
         props: {

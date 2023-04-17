@@ -10,6 +10,9 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <h4>안녕 {{ $store.state.name }}</h4>
+  <button @click="$store.state.name='박'">버튼</button>
+
   <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" :myFilter="myFilter" @write="myFee
    = $event"/>
   <button @click="more">더보기</button>
@@ -47,7 +50,7 @@ export default {
     }
   },
   mounted(){
-    this.emitter.on('작명', (a)=>{
+    this.emitter.on('filterClick', (a)=>{
  
       this.myFilter = a
 
