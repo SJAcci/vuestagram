@@ -10,8 +10,10 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <h4>안녕 {{ $store.state.name }}</h4>
-  <button @click="$store.state.name='박'">버튼</button>
+  <h4>이름 : {{ $store.state.name }}</h4>
+  <h5>나이 : {{ $store.state.age }}</h5>
+  <button @click="$store.commit('chgName')">이름변경</button>
+  <button @click="$store.commit('chgAge', 10)">나이변경</button>
 
   <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" :myFilter="myFilter" @write="myFee
    = $event"/>
@@ -74,10 +76,10 @@ export default {
       })
     },
     upload(e){
-      let uplodedFile = e.target;
+      let uploadedFile = e.target;
 
-      if(uplodedFile.files[0]){
-        this.imgURL = window.URL.createObjectURL(uplodedFile.files[0]);
+      if(uploadedFile.files[0]){
+        this.imgURL = window.URL.createObjectURL(uploadedFile.files[0]);
 
         console.log(this.imgURL)
 

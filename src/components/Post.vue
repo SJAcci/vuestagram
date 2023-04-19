@@ -1,5 +1,5 @@
 <template>
-    <div class="post">
+    <div class="post" @click="$store.commit('chgLike', feed.likes)">
         <div class="post-header">
           <div class="profile" :style="{ backgroundImage: `url(${feed.userImage})`}"></div>
           <span class="profile-name">{{ feed.name }}</span>
