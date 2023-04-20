@@ -15,6 +15,9 @@
   <button @click="$store.commit('chgName')">이름변경</button>
   <button @click="$store.commit('chgAge', 10)">나이변경</button>
 
+  <p>{{ $store.state.more }}</p>
+  <button @click="$store.dispatch('getData')">더보기버튼</button>
+
   <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" :myFilter="myFilter" @write="myFee
    = $event"/>
   <button @click="more">더보기</button>

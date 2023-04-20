@@ -1,12 +1,12 @@
 <template>
-    <div class="post" @click="$store.commit('chgLike', feed.likes)">
+    <div class="post">
         <div class="post-header">
           <div class="profile" :style="{ backgroundImage: `url(${feed.userImage})`}"></div>
           <span class="profile-name">{{ feed.name }}</span>
         </div>
-        <div :class="feed.filter" class="post-body" :style="{ backgroundImage: `url(${feed.postImage})`}"></div>
+        <div @click="$store.commit('chgLike')" :class="feed.filter" class="post-body" :style="{ backgroundImage: `url(${feed.postImage})`}"></div>
         <div class="post-content">
-          <p>{{ feed.likes }} Likes</p>
+          <p>{{ $store.state.likes }} Likes</p>
           <p><strong>{{ feed.name }}</strong> {{ feed.content }}</p>
          <p class="date">{{ feed.date }}</p>
         </div>
