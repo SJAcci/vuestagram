@@ -10,17 +10,19 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <p>{{ name }}  {{ age }}  {{ likes }}</p>
   <h4>이름 : {{ $store.state.name }}</h4>
   <h5>나이 : {{ $store.state.age }}</h5>
   <button @click="$store.commit('chgName')">이름변경</button>
-  <button @click="$store.commit('chgAge', 10)">나이변경</button>
+  <button @click="chgAge(10)">나이변경</button>
 
   <p>{{ $store.state.more }}</p>
   <button @click="$store.dispatch('getData')">더보기버튼</button>
 
   <Container :feed="feed" :tabIdx="tabIdx" :imgURL="imgURL" :myFilter="myFilter" @write="myFee
    = $event"/>
-  <button @click="more">더보기</button>
+
+  <!-- <button @click="more">더보기</button> -->
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -39,6 +41,8 @@
 import Container from './components/Container.vue';
 import feed from './assets/feed.js';
 import axios from 'axios';
+import {mapState} from 'vuex';
+import { mapMutations } from 'vuex';
 // axios.post()
 
 export default {
@@ -51,7 +55,7 @@ export default {
       tabIdx: 0,
       imgURL : '',
       myFeedContent: '',
-      myFilter : ''
+      myFilter : '',
     }
   },
   mounted(){
@@ -65,7 +69,16 @@ export default {
   components: {
     Container,
   },
+  computed: {
+    name(){
+      return this.$store.state.name
+    },
+    ...mapState(['name', 'age', 'likes']),
+    ...mapState({ 내이름 : 'name' })
+  },
   methods:{
+    ...mapMutations(['setMore', 'chgAge']),
+
     more(){
       axios.get(`https://codingapple1.github.io/vue/more${this.idx+=1}.json`)
       .then(obj=>{
