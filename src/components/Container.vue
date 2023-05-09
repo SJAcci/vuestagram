@@ -21,11 +21,16 @@
                 <textarea class="write-box" placeholder="write!" @input="$emit('write', $event.target.value)"></textarea>
             </div>
         </div>
+
+        <div v-if="tabIdx == 3">
+            <MyPage />
+        </div>
     </div>
 </template>
 <script>
 import Post from './Post.vue';
-import FilterBox from './FilterBox.vue'
+import FilterBox from './FilterBox.vue';
+import MyPage from './MyPage.vue';
 
 export default {
     // eslint-disable-next-line
@@ -37,7 +42,8 @@ export default {
     },
     components: {
         Post,
-        FilterBox
+        FilterBox,
+        MyPage
     },
     props: {
         feed: Array,

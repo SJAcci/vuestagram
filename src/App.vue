@@ -52,7 +52,7 @@ export default {
     return{
       feed: feed,
       idx: -1,
-      tabIdx: 0,
+      tabIdx: 3,
       imgURL : '',
       myFeedContent: '',
       myFilter : '',
