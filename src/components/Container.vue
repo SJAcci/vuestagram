@@ -23,7 +23,7 @@
         </div>
 
         <div v-if="tabIdx == 3">
-            <MyPage />
+            <MyPage :one="1" />
         </div>
     </div>
 </template>
